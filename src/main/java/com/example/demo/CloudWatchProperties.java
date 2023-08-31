@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "management.metrics.export.cloudwatch")
 public class CloudWatchProperties extends StepRegistryProperties {
 
+  
     private String namespace = "mydemoXYZ";
     private boolean enabled = true;
 
