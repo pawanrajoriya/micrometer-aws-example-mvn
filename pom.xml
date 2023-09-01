@@ -35,7 +35,7 @@
 
 		<dependency>
 			<groupId>io.micrometer</groupId>
-			<artifactId>micrometer-registry-cloudwatch</artifactId>
+			<artifactId>micrometer-registry-cloudwatch2</artifactId>
 		</dependency>
 		
 	</dependencies>

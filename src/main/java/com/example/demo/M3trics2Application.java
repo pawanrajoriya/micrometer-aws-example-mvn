@@ -10,13 +10,10 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import com.amazonaws.services.cloudwatch.AmazonCloudWatchAsync;
-import com.amazonaws.services.cloudwatch.AmazonCloudWatchAsyncClient;
-import com.example.demo.CloudWatchProperties;
-
-import io.micrometer.cloudwatch.CloudWatchConfig;
-import io.micrometer.cloudwatch.CloudWatchMeterRegistry;
+import io.micrometer.cloudwatch2.CloudWatchConfig;
+import io.micrometer.cloudwatch2.CloudWatchMeterRegistry;
 import io.micrometer.core.instrument.Clock;
+import software.amazon.awssdk.services.cloudwatch.CloudWatchAsyncClient;
 
 @SpringBootApplication
 public class M3trics2Application {
@@ -27,8 +24,7 @@ public class M3trics2Application {
   }
   
   @Bean
-  public CloudWatchMeterRegistry cloudWatchMeterRegistry(CloudWatchConfig config,
-                                                         Clock clock, AmazonCloudWatchAsync client) {
+  public CloudWatchMeterRegistry cloudWatchMeterRegistry(CloudWatchConfig config, Clock clock, CloudWatchAsyncClient client) {
       return new CloudWatchMeterRegistry(config, clock, client);
   }
   
@@ -38,8 +34,8 @@ public class M3trics2Application {
   }
   
   @Bean
-  public AmazonCloudWatchAsync amazonCloudWatchAsync() {
-      return AmazonCloudWatchAsyncClient.asyncBuilder().build();
+  public CloudWatchAsyncClient  amazonCloudWatchAsync() {
+      return CloudWatchAsyncClient.create();
   }
   
   @Bean
@@ -75,6 +71,7 @@ public class M3trics2Application {
               return null;
           }
       };
+
   }
 
   public static void main(String[] args) {
