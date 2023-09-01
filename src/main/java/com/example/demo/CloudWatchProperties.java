@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 public class CloudWatchProperties extends StepRegistryProperties {
 
   
-    private String namespace = "mydemoXYZ";
-    private boolean enabled = true;
+    private String namespace;
+    private boolean enabled = false;
 
     public String getNamespace() {
         return this.namespace;
